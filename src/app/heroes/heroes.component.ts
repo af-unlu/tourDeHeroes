@@ -13,27 +13,18 @@ import { MessageService } from '../message.service';
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })
+
 export class HeroesComponent implements OnInit {
+  heroes: Hero[] = [];
 
-  heroes:Hero[]=[];  
-  selectedHero?:Hero;
-  //for depency injection ??
-  constructor(private heroService:HeroService,private messageService:MessageService) {
-    //better for depency injection
-  }
+  constructor(private heroService: HeroService) { }
 
-  async getHeroes():Promise<void>{
-    (await this.heroService.getHeroes()).subscribe(heroes=>this.heroes=heroes);
-  }
-
-  //Life cycle hook, initing logic
   ngOnInit(): void {
     this.getHeroes();
   }
-  onSelect(hero:Hero): void{
-    this.selectedHero=hero;
-    this.messageService.add(`HeroesComponent : Selected ${hero.name}`)
+
+  async getHeroes(): Promise<void> {
+    (await this.heroService.getHeroes())
+    .subscribe(heroes => this.heroes = heroes);
   }
-
-
 }

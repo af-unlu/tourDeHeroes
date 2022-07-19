@@ -1,26 +1,8 @@
-<!-- <h2>{{hero.name | uppercase}} Details</h2>
-<div *ngIf="hero.id!=null"><span>id: </span>{{hero.id}}</div>
-<div ><span>id: </span>{{hero.id}} deneme</div>
-<div ><span>name: </span>{{hero.name}}</div> -->
-<!-- pipe |  -->
-
-<!-- 
-<div>
-    <label for="name">Hero name: </label>
-    <input id="name" [(ngModel)]="hero.name" placeholder="name">
-    <h1>{{hero.name}}</h1>
-</div> -->
-<!-- let i of array  //Iterator -->
-<!-- [class.selected]="hero === selectedHero" t -->
-<h2>My Heroes</h2>
 <ul class="heroes">
   <li *ngFor="let hero of heroes">
-    <button  [class.selected]="hero===selectedHero" ype="button" (click)="onSelect(hero)">
+    <a routerLink="/detail/{{hero.id}}">
       <span class="badge">{{hero.id}}</span>
-      <span class="name">{{hero.name}}</span>
-    </button>
+      {{hero.name}}
+    </a>
   </li>
 </ul>
-
-<!-- uses the parameter pass the parameter -->
-<app-hero-detail [hero]="selectedHero"></app-hero-detail>

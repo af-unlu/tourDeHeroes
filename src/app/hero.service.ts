@@ -17,4 +17,10 @@ export class HeroService {
     return of(HEROES);
   }
 
+  async getHero(id:number):Promise<Observable<Hero>>{
+    await new Promise(r => setTimeout(r, 100));
+    const hero = HEROES.find(h => h.id === id)!;
+    this.messageService.add(`HeroService: fetched hero id=${id}`);
+    return of(hero);
+  }
 }
